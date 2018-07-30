@@ -200,6 +200,10 @@ open class FlatButton: NSButton, CALayerDelegate {
     let vSpacing = round((bounds.height-(imageRect.height+titleSize.height))/3)
     
     switch imagePosition {
+    case .imageOnly:
+      imageRect.origin.x = round((bounds.width - imageRect.width)/2)
+      imageRect.origin.y = round((bounds.height - imageRect.height)/2)
+      break
     case .imageAbove:
       titleRect.origin.y = bounds.height-titleRect.height - 2
       titleRect.origin.x = round((bounds.width - titleSize.width)/2)
@@ -225,7 +229,7 @@ open class FlatButton: NSButton, CALayerDelegate {
       imageRect.origin.x = bounds.width - imageRect.width - hSpacing
       break
     default:
-      titleRect.origin.y = round((bounds.height - titleSize.height)/2)
+      titleRect.origin.y = round((bounds.height - titleSize.height)/2) + borderWidth
       titleRect.origin.x = round((bounds.width - titleSize.width)/2)
     }
     iconLayer.frame = imageRect
